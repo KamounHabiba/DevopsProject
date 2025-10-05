@@ -1,5 +1,5 @@
 pipeline {
-    agent any  // or: agent { docker { image 'maven:3.8.1-jdk-11' } }
+    agent any
 
     tools {
         maven 'M2_HOME'
@@ -24,7 +24,13 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Running unit tests...'
-                sh 'mvn test'
+                sh 'mvn test -Dspring.profiles.active=test'
+            }
+            post {
+                always {
+                    publishTestResults testResultsPattern: 'target/surefire-reports/*.xml'
+                    publishTestResults testResultsPattern: 'target/failsafe-reports/*.xml'
+                }
             }
         }
 
