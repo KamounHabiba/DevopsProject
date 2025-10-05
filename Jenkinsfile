@@ -2,8 +2,8 @@ pipeline {
     agent any  // or: agent { docker { image 'maven:3.8.1-jdk-11' } }
 
     tools {
-        maven 'MAVEN_HOME'  // Make sure "MAVEN_HOME" is configured in Jenkins (Global Tool Configuration)
-        jdk 'JDK11'         // Make sure "JDK11" is configured as well
+        maven 'M2_HOME'
+        jdk 'JAVA_HOME'
     }
 
     stages {
