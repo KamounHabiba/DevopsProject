@@ -28,8 +28,7 @@ pipeline {
             }
             post {
                 always {
-                    publishTestResults testResultsPattern: 'target/surefire-reports/*.xml'
-                    publishTestResults testResultsPattern: 'target/failsafe-reports/*.xml'
+                    junit testResultsPattern: 'target/surefire-reports/*.xml', allowEmptyResults: true
                 }
             }
         }
@@ -40,6 +39,7 @@ pipeline {
                 archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
             }
         }
+
     }
 
     post {
