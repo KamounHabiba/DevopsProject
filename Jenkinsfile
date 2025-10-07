@@ -42,7 +42,7 @@ pipeline {
             }
         }
         environment {
-        SONARQUBE_ENV = 'SonarQube' 
+            SONARQUBE_ENV = 'SonarQube' 
         }
         stage('Archive Artifacts') {
             steps {
