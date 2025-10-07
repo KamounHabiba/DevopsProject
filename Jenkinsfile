@@ -32,7 +32,18 @@ pipeline {
                 }
             }
         }
-
+        stage('SonarQube') {
+            steps {
+                script {
+                    withSonarQubeEnv("${SONARQUBE_ENV}") {
+                        sh 'mvn sonar:sonar -Dsonar.projectKey=Devops-projet -Dsonar.projectName="Devops Project"'
+                    }
+                }
+            }
+        }
+        environment {
+        SONARQUBE_ENV = 'SonarQube' 
+        }
         stage('Archive Artifacts') {
             steps {
                 echo 'Archiving JAR artifacts...'
