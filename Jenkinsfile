@@ -5,7 +5,9 @@ pipeline {
         maven 'M2_HOME'
         jdk 'JAVA_HOME'
     }
-
+    environment {
+        SONARQUBE_ENV = 'SonarQube' 
+    }
     stages {
         stage('Checkout') {
             steps {
@@ -41,9 +43,7 @@ pipeline {
                 }
             }
         }
-        environment {
-            SONARQUBE_ENV = 'SonarQube' 
-        }
+
         stage('Archive Artifacts') {
             steps {
                 echo 'Archiving JAR artifacts...'
